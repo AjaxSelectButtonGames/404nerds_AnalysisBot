@@ -1,4 +1,4 @@
-import "dotenv/config":
+import "dotenv/config";
 
 export const CONFIG = {
   username: process.env.BLUESKY_USERNAME,
