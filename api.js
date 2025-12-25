@@ -8,7 +8,14 @@ export async function requestAnalysis(handle) {
     body: JSON.stringify({ handle })
   });
 
-  const data = await res.json();
+  const text = await res.text();
+
+  let data;
+  try {
+    data = JSON.parse(text);
+  } catch {
+    throw new Error("Analysis API returned non-JSON (check endpoint)");
+  }
 
   if (!res.ok) {
     throw new Error(data.detail || "Analysis failed");
